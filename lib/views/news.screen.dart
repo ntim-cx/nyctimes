@@ -60,21 +60,6 @@ class NewsScreen extends StatelessWidget {
 
     final abstract = Text(news.abstract);
 
-    /*final openLink = Row(
-      children: [
-        const Text(
-          "Want to read the full story?",
-          style: TextStyle(),
-        ),
-        Utils.horizontalSpacer(),
-        MaterialButton(
-          onPressed: () => {launch(news.url)},
-          child: const Text("Go to Story"),
-          color: Colors.green,
-        )
-      ],
-    );*/
-
     final openLink = RichText(
       text: TextSpan(
           text: "Want to red the full story? ",
@@ -164,32 +149,6 @@ class NewsScreen extends StatelessWidget {
             ];
           },
           body: body),
-    );
-
-    return Scaffold(
-      body: ListView(
-        children: [
-          carousel,
-          Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                title,
-                abstract,
-                Utils.verticalSpacer(),
-                authors,
-                Utils.verticalSpacer(space: 8),
-                keywords,
-                Utils.verticalSpacer(space: 8),
-                section,
-                openLink
-              ],
-            ),
-          )
-        ],
-      ),
     );
   }
 }
