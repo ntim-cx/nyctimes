@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_header/config/router.dart';
 import 'package:news_header/config/router.dart' as router;
+import 'package:news_header/config/theme.dart' as theme;
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'NycTimes',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme.primaryTheme,
       onGenerateRoute: router.generateRoute,
       initialRoute: AppRoutes.headlines,
     );
