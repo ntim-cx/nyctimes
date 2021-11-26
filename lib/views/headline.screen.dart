@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_header/mock/response.mock.dart';
 import 'package:news_header/models/news.dart';
+import 'package:news_header/shared_widget/news_item.loading.dart';
 import 'package:news_header/shared_widget/news_item_tile.dart';
 
 class HeadlineScreen extends StatefulWidget {
@@ -37,11 +38,13 @@ class _HeadlineScreenState extends State<HeadlineScreen> {
     return Scaffold(
       appBar: appBar,
       body: ListView.builder(
-          itemCount: sampleNews.length,
+          itemCount: true ? 10 : sampleNews.length,
           itemBuilder: (context, item) {
-            return NewsItemTile(
-              news: sampleNews[item],
-            );
+            return true
+                ? const NewsItemLoading()
+                : NewsItemTile(
+                    news: sampleNews[item],
+                  );
           }),
     );
   }
