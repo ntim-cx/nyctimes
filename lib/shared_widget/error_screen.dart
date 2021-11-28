@@ -3,12 +3,13 @@ import 'package:news_header/config/constants.dart';
 import 'package:news_header/config/utils.dart';
 
 class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({Key key}) : super(key: key);
+  final Function onRefresh;
+  const ErrorScreen({Key key, this.onRefresh}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -32,7 +33,7 @@ class ErrorScreen extends StatelessWidget {
             ),
           ),
           Utils.verticalSpacer(),
-          TextButton(onPressed: () {}, child: const Text("Retry"))
+          TextButton(onPressed: () => onRefresh, child: const Text("Retry"))
         ],
       ),
     );

@@ -42,20 +42,25 @@ class _HeadlineScreensState extends ConsumerState<HeadlineScreen> {
 
     return Scaffold(
       appBar: appBar,
-      body: responseValue.when(
-          data: (data) => ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, item) {
-                return NewsItemTile(
-                  news: data[item],
-                );
-              }),
-          error: (e, st) => const ErrorScreen(),
-          loading: () => ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, item) {
-                return const NewsItemLoading();
-              })),
+      body: RefreshIndicator(
+        onRefresh: () async => ref.refresh(headlineProvider),
+        child: responseValue.when(
+            data: (data) => ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, item) {
+                  return NewsItemTile(
+                    news: data[item],
+                  );
+                }),
+            error: (e, st) => ErrorScreen(
+                  onRefresh: () => ref.refresh(headlineProvider),
+                ),
+            loading: () => ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, item) {
+                  return const NewsItemLoading();
+                })),
+      ),
     );
   }
 }
