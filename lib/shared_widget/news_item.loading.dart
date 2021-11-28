@@ -30,7 +30,7 @@ class NewsItemLoading extends StatelessWidget {
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 8,
+                    height: 14,
                     color: Colors.grey,
                   ),
                   Utils.verticalSpacer(space: 8),
@@ -39,13 +39,13 @@ class NewsItemLoading extends StatelessWidget {
                     children: [
                       Container(
                         width: 150,
-                        height: 10,
+                        height: 14,
                         color: Colors.grey,
                       ),
                       Utils.verticalSpacer(),
                       Container(
                         width: 70,
-                        height: 10,
+                        height: 14,
                         color: Colors.grey,
                       ),
                     ],

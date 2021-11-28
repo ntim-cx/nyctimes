@@ -1,34 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:news_header/mock/response.mock.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_header/config/constants.dart';
 import 'package:news_header/models/news.dart';
+import 'package:news_header/providers/headlines.provider.dart';
 import 'package:news_header/shared_widget/news_item.loading.dart';
 import 'package:news_header/shared_widget/news_item_tile.dart';
 
-class HeadlineScreen extends StatefulWidget {
-  const HeadlineScreen({Key key}) : super(key: key);
+class HeadlineScreen extends ConsumerStatefulWidget {
+  const HeadlineScreen({
+    Key key,
+  }) : super(key: key);
 
   @override
-  State<HeadlineScreen> createState() => _HeadlineScreenState();
+  ConsumerState createState() => _HeadlineScreensState();
 }
 
-class _HeadlineScreenState extends State<HeadlineScreen> {
-  List<News> sampleNews = [];
+class _HeadlineScreensState extends ConsumerState<HeadlineScreen> {
+  final headlineProvider = FutureProvider<List<News>>((ref) async {
+    return Future.value(HeadlineProvider().index());
+  });
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    var data = MockData.sample["data"];
-    for (var e in data) {
-      sampleNews.add(News.fromJson(e));
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final responseValue = ref.watch(headlineProvider);
+
     final appBar = AppBar(
-      leading: const Icon(Icons.menu),
-      title: const Text("NY Times Most Popular"),
+      leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+      title: const Text(AppString.headlineTitle),
       actions: [
         IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
         IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
@@ -37,15 +41,22 @@ class _HeadlineScreenState extends State<HeadlineScreen> {
 
     return Scaffold(
       appBar: appBar,
-      body: ListView.builder(
-          itemCount: true ? 10 : sampleNews.length,
-          itemBuilder: (context, item) {
-            return true
-                ? const NewsItemLoading()
-                : NewsItemTile(
-                    news: sampleNews[item],
-                  );
-          }),
+      body: responseValue.when(
+          data: (data) => ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, item) {
+                return NewsItemTile(
+                  news: data[item],
+                );
+              }),
+          error: (e, st) => const Center(
+                child: Text(AppString.tryAgain),
+              ),
+          loading: () => ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, item) {
+                return const NewsItemLoading();
+              })),
     );
   }
 }

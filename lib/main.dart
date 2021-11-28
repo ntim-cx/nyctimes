@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_header/config/router.dart';
 import 'package:news_header/config/router.dart' as router;
 import 'package:news_header/config/theme.dart' as theme;
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'NycTimes',
+      title: 'Nyc Times',
       theme: theme.primaryTheme,
       onGenerateRoute: router.generateRoute,
       initialRoute: AppRoutes.headlines,
