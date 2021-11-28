@@ -7,6 +7,7 @@ class Api {
 
 class AppColors {
   static const errorColor = Color(0xFFD32F2F);
+  static const secondaryColor = Color(0xFFA0AEC0);
 }
 
 class AppString {
@@ -20,4 +21,6 @@ class AppString {
       "Looks like there's no breaking news. Well that's a first!! Check again later.";
 
   static const emptyHeadlineTitle = "No news available";
+  static const readFullStory = "Want to red the full story? ";
+  static const findStory = "Find it here";
 }

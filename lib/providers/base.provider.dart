@@ -12,6 +12,7 @@ class BaseProvider {
   get hasError => uiState == UiState.error;
 
   final http = HttpService();
+
   // Functions
   void setUiState(UiState _uiState) {
     uiState = _uiState;

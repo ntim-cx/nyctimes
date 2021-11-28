@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:news_header/config/constants.dart';
 import 'package:news_header/config/utils.dart';
 import 'package:news_header/models/news.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -62,11 +63,11 @@ class NewsScreen extends StatelessWidget {
 
     final openLink = RichText(
       text: TextSpan(
-          text: "Want to red the full story? ",
+          text: AppString.readFullStory,
           style: TextStyle(color: Colors.black.withOpacity(0.2), fontSize: 16),
           children: [
             TextSpan(
-              text: "Find it here",
+              text: AppString.findStory,
               recognizer: TapGestureRecognizer()
                 ..onTap = () => launch(news.url),
               style: const TextStyle(
