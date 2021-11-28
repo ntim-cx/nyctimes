@@ -6,6 +6,7 @@ class Api {
 class AppString {
   static const appName = "Nyc Times";
   static const headlineTitle = "NY Times Most Popular";
+  static const error = "Something went wrong!";
   static const tryAgain =
-      "Sorry error occurred while loading data Please try later";
+      "Sorry, an error occurred while loading headlines, Please try again later";
 }

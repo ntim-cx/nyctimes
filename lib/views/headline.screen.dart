@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_header/config/constants.dart';
 import 'package:news_header/models/news.dart';
 import 'package:news_header/providers/headlines.provider.dart';
+import 'package:news_header/shared_widget/error_screen.dart';
 import 'package:news_header/shared_widget/news_item.loading.dart';
 import 'package:news_header/shared_widget/news_item_tile.dart';
 
@@ -49,9 +50,7 @@ class _HeadlineScreensState extends ConsumerState<HeadlineScreen> {
                   news: data[item],
                 );
               }),
-          error: (e, st) => const Center(
-                child: Text(AppString.tryAgain),
-              ),
+          error: (e, st) => const ErrorScreen(),
           loading: () => ListView.builder(
               itemCount: 10,
               itemBuilder: (context, item) {
