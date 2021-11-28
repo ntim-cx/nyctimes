@@ -33,7 +33,7 @@ class ErrorScreen extends StatelessWidget {
             ),
           ),
           Utils.verticalSpacer(),
-          TextButton(onPressed: () => onRefresh, child: const Text("Retry"))
+          TextButton(onPressed: () => onRefresh(), child: const Text("Retry"))
         ],
       ),
     );
