@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_header/config/constants.dart';
@@ -45,15 +46,26 @@ class _HeadlineScreensState extends ConsumerState<HeadlineScreen> {
       body: RefreshIndicator(
         onRefresh: () async => ref.refresh(headlineProvider),
         child: responseValue.when(
-            data: (data) => ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, item) {
-                  return NewsItemTile(
-                    news: data[item],
-                  );
-                }),
+            data: (data) => data.isEmpty
+                ? ErrorScreen(
+                    icon: CupertinoIcons.news,
+                    iconColor: Colors.grey,
+                    description: AppString.emptyHeadlineDescription,
+                    showButton: true,
+                    onTap: () => ref.refresh(headlineProvider),
+                    title: AppString.emptyHeadlineTitle)
+                : ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, item) {
+                      return NewsItemTile(
+                        news: data[item],
+                      );
+                    }),
             error: (e, st) => ErrorScreen(
-                  onRefresh: () => ref.refresh(headlineProvider),
+                  title: AppString.error,
+                  description: AppString.tryAgain,
+                  showButton: true,
+                  onTap: () => ref.refresh(headlineProvider),
                 ),
             loading: () => ListView.builder(
                 itemCount: 10,

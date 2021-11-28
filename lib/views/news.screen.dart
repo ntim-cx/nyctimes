@@ -94,7 +94,6 @@ class NewsScreen extends StatelessWidget {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  //margin: const EdgeInsts.symmetric(horizontal: 5.0),
                   decoration: BoxDecoration(color: Utils.randomOpaqueColor()),
                   child: Image.network(
                     i.mediaMetadata[i.mediaMetadata.length - 1].url,
