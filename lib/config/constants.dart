@@ -24,3 +24,12 @@ class AppString {
   static const readFullStory = "Want to red the full story? ";
   static const findStory = "Find it here";
 }
+
+class WidgetKeys {
+  //News Item Tile Keys
+  static const newsTitleKey = ValueKey("newsTitleKey");
+  static const newsPublishDate = ValueKey("newsPublishDate");
+  static const newsByLine = ValueKey("newsByLine");
+  static const newsImage = ValueKey("newsImage");
+  static const newsItemWidget = ValueKey("newsItemWidget");
+}

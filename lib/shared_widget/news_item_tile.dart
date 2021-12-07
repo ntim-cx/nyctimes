@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_header/config/constants.dart';
 import 'package:news_header/config/router.dart';
 import 'package:news_header/config/utils.dart';
 import 'package:news_header/models/news.dart';
@@ -11,6 +12,7 @@ class NewsItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      key: WidgetKeys.newsItemWidget,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       onPressed: () =>
           Navigator.pushNamed(context, AppRoutes.news, arguments: news),
@@ -21,6 +23,7 @@ class NewsItemTile extends StatelessWidget {
             child: (news.media.isNotEmpty)
                 ? Image.network(
                     news.media[0].mediaMetadata[0].url,
+                    key: WidgetKeys.newsImage,
                     width: 50,
                   )
                 : Container(
@@ -36,6 +39,7 @@ class NewsItemTile extends StatelessWidget {
               children: [
                 Text(
                   news.title,
+                  key: WidgetKeys.newsTitleKey,
                   overflow: TextOverflow.fade,
                   maxLines: 2,
                   style: const TextStyle(
@@ -50,6 +54,7 @@ class NewsItemTile extends StatelessWidget {
                     Expanded(
                       child: Text(
                         news.byline,
+                        key: WidgetKeys.newsByLine,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style:
@@ -67,6 +72,7 @@ class NewsItemTile extends StatelessWidget {
                         Utils.horizontalSpacer(space: 8),
                         Text(
                           news.publishedDate,
+                          key: WidgetKeys.newsPublishDate,
                           style:
                               const TextStyle(fontSize: 14, color: Colors.grey),
                         )

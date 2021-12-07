@@ -6,20 +6,26 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 void main() {
-  /*testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  /*testWidgets('Test News Tile with Image', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    final newsTitle = find.byKey(WidgetKeys.newsTitleKey);
+    final newsPublishedDate = find.byKey(WidgetKeys.newsPublishDate);
+    final newsAuthor = find.byKey(WidgetKeys.newsByLine);
+    final newsImage = find.byKey(WidgetKeys.newsImage);
+    final newsItem = find.byKey(WidgetKeys.newsItemWidget);
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpWidget(MaterialApp(
+      home: NewsItemTile(
+        news: News.fromJson(MockData.newsItem),
+      ),
+    ));
+    await tester.tap(newsItem);
     await tester.pump();
+    //wait tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(newsTitle, findsOneWidget);
+    expect(newsPublishedDate, findsOneWidget);
+    expect(newsAuthor, findsOneWidget);
+    expect(newsImage, findsOneWidget);
   });*/
 }

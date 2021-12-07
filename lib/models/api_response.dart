@@ -1,11 +1,5 @@
 class ApiResponse {
-  int get totalDataCount => body["meta"]["total"];
-
-  int get totalPageCount => body["meta"]["last_page"];
-
   List get data => body["results"];
-
-  Map get mappedData => body["data"];
 
   bool get success => errors.isEmpty;
   int code;
